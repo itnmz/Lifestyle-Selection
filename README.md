@@ -1,4 +1,4 @@
-# 🌟 Lifestyle Selection (生活方式选择与推荐系统)
+# 🌟 Lifestyle Selection (高并发生活服务平台)
 
 <p align="center">
   <a href="https://github.com/itnmz/Lifestyle-Selection">
