@@ -21,7 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
         //第二层拦截器：拦截部分请求
         //登录拦截器
         registry.addInterceptor(new LoginInterceptor())
-                .excludePathPatterns(
+                .excludePathPatterns( //不需要拦截的路径
                         "/shop/**",
                         "/voucher/**",
                         "/shop-type/**",

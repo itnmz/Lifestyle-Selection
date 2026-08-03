@@ -231,7 +231,6 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         // 5.一人一单
         Long userId = voucherOrder.getUserId();
         Long voucherId = voucherOrder.getVoucherId();
-
         // 没必要再检查一人一单了
         /*
          * Long count = lambdaQuery()
@@ -257,6 +256,7 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
         }
         // 添加订单
         save(voucherOrder);
+
     }
 
     /*

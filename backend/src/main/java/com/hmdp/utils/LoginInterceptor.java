@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 拦截需要登录的路径
+ * 拦截需要登录的请求路径
  * 1.查询ThreadLocal保存的登录用户
  * 2.判断用户是否存在
  * 不存在，则拦截

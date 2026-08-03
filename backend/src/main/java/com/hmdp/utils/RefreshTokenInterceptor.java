@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 刷新token拦截器
- * 拦截一切路径
+ * 拦截一切请求路径
  * 1.获取请求头中的token
  * 2.查询redis中的用户
  * 3.保存用户信息到ThreadLocal
@@ -32,6 +32,9 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1.获取请求头中的token
         String token = request.getHeader("authorization");
+
+//        StrUtil.isEmpty(token)：只判断 null 或 ""，不处理纯空格的情况。
+//        StrUtil.isBlank(token)：更严格，连 " "（纯空格）也会被认为是空。
         if(StrUtil.isBlank(token)){
             return true;
         }
@@ -56,6 +59,7 @@ public class RefreshTokenInterceptor implements HandlerInterceptor {
         return true;
     }
 
+//    在一次 HTTP 请求完成之后，清理 ThreadLocal 中保存的用户信息，防止线程复用导致用户数据泄露
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         UserHolder.removeUser();
