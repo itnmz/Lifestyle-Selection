@@ -101,22 +101,25 @@
 
 ```text
 Lifestyle-Selection/
-├── docs/                   # 项目设计文档及 API 说明
-├── src/
-│   ├── main/
-│   │   ├── java/           # 后端源码目录
-│   │   │   └── com/
-│   │   │       └── lifestyle/
-│   │   │           ├── controller/   # 控制层 (API)
-│   │   │           ├── service/      # 业务逻辑层
-│   │   │           ├── mapper/       # 数据持久层
-│   │   │           └── model/        # 数据模型实体
-│   │   └── resources/      # 配置文件与 SQL 脚本
-│   └── test/               # 单元测试
-├── .gitignore              # Git 忽略配置
-├── pom.xml                 # Maven 依赖管理
-├── LICENSE                 # 开源协议
-└── README.md               # 项目说明文档
+├── backend/                    # 后端服务目录 [hm-dianping]
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/hmdp/
+│   │   │   │   ├── config/             # 配置类 (Redis, RabbitMQ, MVC 等)
+│   │   │   │   ├── controller/         # 控制层 (API 接口)
+│   │   │   │   ├── dto/                # 数据传输对象
+│   │   │   │   ├── entity/             # 数据库实体类
+│   │   │   │   ├── Listener/           # 消息队列监听器 (RabbitMQ Listener)
+│   │   │   │   ├── mapper/             # 数据持久层 (MyBatis / MyBatis-Plus)
+│   │   │   │   ├── service/            # 业务逻辑层及其实现类
+│   │   │   │   ├── utils/              # 工具类 (ThreadLocal, RedisIdWorker 等)
+│   │   │   │   └── HmDianPingApplication.java  # 项目启动入口
+│   │   │   └── resources/              # 配置文件 (application.yml) 及静态资源
+│   │   └── test/                       # 单元测试目录
+│   ├── .gitignore                      # 后端 Git 忽略配置
+│   └── pom.xml                         # 后端 Maven 依赖管理配置
+├── frontend/                   # 前端服务目录
+└── README.md                   # 项目说明文档
 
 ```
 
