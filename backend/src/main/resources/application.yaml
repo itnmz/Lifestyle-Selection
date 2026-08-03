@@ -7,11 +7,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/hmdp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: 224239
+    password: *
   redis:
     host: 192.168.100.129
     port: 6379
-    password: 224239
+    password: *
     lettuce:
       pool:
         max-active: 10
@@ -22,12 +22,24 @@ spring:
     host: 192.168.100.129 # 你的虚拟机IP
     port: 5672 # 端口
     virtual-host: / # 虚拟主机
-    username: itheima # 用户名
-    password: 123321 # 密码
+    username: itnmz # 用户名
+    password: * # 密码
     connection-timeout: 1s #连接超时时间（后端服务与mq的连接）
     template:
       retry:
         enabled: true #开启超时重试机制
+    # 生产者消息可靠性投递配置（结合持久化使用）
+    publisher-confirm-type: correlated  # 开启发布者确认（新版配置）：none(关闭), simple(同步等待), correlated(异步回调)
+    publisher-returns: true             # 开启消息路由失败退回（当交换机找不到队列时退回消息）
+    # 消费者配置
+    listener:
+      simple:
+        acknowledge-mode: manual        # 开启手动确认模式（manual），确保消息消费成功后再从队列中删除
+        prefetch: 1                     # 限制每个消费者一次拉取的消息数量（能者多劳，避免死积压）
+        retry:
+          enabled: true                 # 是否开启本地消费重试
+          initial-interval: 1000ms      # 首次重试间隔
+          max-attempts: 3               # 最大重试次数
 
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
